@@ -1,14 +1,46 @@
 <!DOCTYPE html>
 <html lang='en'>
-  <head>
-    <meta charset='UTF-8'/>
-    <script src=https://cdnjs.cloudflare.com/ajax/libs/mathjs/3.3.0/math.min.js></script>
 
-    <title>Rock Paper Scissors</title>
-    <link rel='stylesheet' href='style.css'/>
-  </head>
-  <body>
-    <script src="index.js">
-    </script>
-  </body>
-  </html>
+<head>
+  <meta charset='UTF-8' />
+  <script src=https://cdnjs.cloudflare.com/ajax/libs/mathjs/3.3.0/math.min.js></script>
+
+  <title>Rock Paper Scissors</title>
+  <link rel='stylesheet' href='style.css' />
+</head>
+
+<body>
+  <div class="fullsize">
+    <div class="alert">
+      <span class="alert-box"></span>
+
+    </div>
+    <div class="you">
+      <div class="title">You</div>
+      <div class="weapons">
+        <div class="weapon">
+          <button id="Paper">Paper</button>
+        </div>
+        <div class="weapon">
+          <button id="Rock">Rock</button>
+        </div>
+        <div class="weapon">
+          <button id="Scissors">Scissors</button>
+        </div>
+      </div>
+      <div class="score"></div>
+    </div>
+    <div class="pc">
+      <div class="title">PC</div>
+      <div class="weapon">
+        <button disabled></button>
+      </div>
+      <div class="score"></div>
+    </div>
+
+  </div>
+  <script src="index.js">
+  </script>
+</body>
+
+</html>

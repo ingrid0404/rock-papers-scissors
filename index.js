@@ -4,84 +4,128 @@ const SCISSORS = 'Scissors'
 
 const choicesArray = [ROCK, PAPER, SCISSORS];
 
-function validateWeapon(input){
+let score = [0, 0];
+const scoreDisplay = document.getElementsByClassName("score");
+scoreDisplay[0].innerHTML = score[1];
+scoreDisplay[1].innerHTML = score[0];
+
+const pcWeapon = document.querySelector("div.pc > div.weapon").querySelectorAll('button')[0];
+pcWeapon.innerHTML = "Computer's choice"
+
+
+const buttons = document.querySelectorAll('button');
+buttons.forEach(button => {
+    button.addEventListener("click", playRound);
+
+});
+
+function playRound(event) {
+
+    const userSelection = event.currentTarget.id;
+    const computerChoice = getComputerChoice();
+
+    const pcWeapon = document.querySelector("div.pc > div.weapon").querySelectorAll('button')[0];
+    pcWeapon.innerHTML = "Computer's choice " + computerChoice;
+
+    let intermediateScore = getRoundScore(computerChoice, userSelection);
+
+    document.querySelector(".alert").style.opacity = 1;
+    document.querySelector(".alert").innerHTML = getWinner(intermediateScore[1], intermediateScore[0]).text;
+    document.querySelector(".alert").style.backgroundColor = getWinner(intermediateScore[1], intermediateScore[0]).color;
+
+
+    score = score.map(function (num, idx) {
+        return num + intermediateScore[idx];
+    });
+
+    scoreDisplay[0].innerHTML = score[0];
+    scoreDisplay[1].innerHTML = score[1];
+
+}
+
+function validateWeapon(input) {
     return choicesArray.includes(input);
 }
 
 function validatePlayAgain(input) {
-    if(input === 'y' || 'n')
+    if (input === 'y' || 'n')
         return true;
-        return false;
+    return false;
 }
 
 function getComputerChoice() {
-    let itemChosedByComputer = choicesArray[Math.floor(Math.random()*choicesArray.length)];
+    let itemChosedByComputer = choicesArray[Math.floor(Math.random() * choicesArray.length)];
     return itemChosedByComputer;
 
 }
 
 function getWinner(computerScore, userScore) {
-    if(computerScore === userScore)
-        return 'Equality';
-    if(computerScore > userScore)
-        return 'Computer!';
-    else return 'You won! Congrats!';
+    let toReturn = { text: 'You won! Congrats!', color: 'green' };
+    if (computerScore === userScore) {
+        toReturn = { text: 'Equality', color: 'orange' }
+    }
+
+    if (computerScore > userScore) {
+        toReturn = { text: 'Computer won!', color: 'red' }
+    }
+
+    return toReturn;
 }
 
 /*
 return [computerScore, userScore]
 */
 function getRoundScore(computerChoice, userChoice) {
-    if(computerChoice === userChoice)
-        return [0,0];
+    if (computerChoice === userChoice)
+        return [0, 0];
 
-    switch(userChoice) {
-       case ROCK: {
-            if(computerChoice === SCISSORS)
-                return [0,1];
-            if(computerChoice === PAPER)
-                return [1,0];
+    switch (userChoice) {
+        case ROCK: {
+            if (computerChoice === SCISSORS)
+                return [0, 1];
+            if (computerChoice === PAPER)
+                return [1, 0];
             break;
         }
-        case PAPER:{
-            if(computerChoice === SCISSORS)
-                return [0,1];
-            if(computerChoice === ROCK)
-                return [1,0]
+        case PAPER: {
+            if (computerChoice === SCISSORS)
+                return [0, 1];
+            if (computerChoice === ROCK)
+                return [1, 0]
             break;
         }
-        case SCISSORS:{
-            if(computerChoice === PAPER)
-                return [0,1];
-            if(computerChoice === ROCK)
-                return [1,0]
+        case SCISSORS: {
+            if (computerChoice === PAPER)
+                return [0, 1];
+            if (computerChoice === ROCK)
+                return [1, 0]
             break;
 
         }
-        default:break;
-        }
+        default: break;
+    }
 }
 
-function playGame(){
-    
-    let playAgain = true;
-    let score = [0,0];
+function playGame() {
 
-    while(playAgain) {
+    let playAgain = true;
+    let score = [0, 0];
+
+    while (playAgain) {
 
         const input = prompt("Choose your weapon");
 
-        if(validateWeapon(input)) {
+        if (validateWeapon(input)) {
 
             const computerChoice = getComputerChoice();
             console.log("Computer has chosen: " + computerChoice);
             let intermediateScore = getRoundScore(computerChoice, input);
-         
+
             score = score.map(function (num, idx) {
                 return num + intermediateScore[idx];
             });
-            console.log('intermediate score: '+ score);
-        
+            console.log('intermediate score: ' + score);
+
 
         } else {
             console.log("Invalid weapon");
@@ -90,20 +134,20 @@ function playGame(){
         }
 
         let userPlayAgain = prompt("Play again? (y/n)");
-    
-        if(validatePlayAgain(userPlayAgain)){
-            if(userPlayAgain === 'y')
+
+        if (validatePlayAgain(userPlayAgain)) {
+            if (userPlayAgain === 'y')
                 playAgain = true;
-            if(userPlayAgain === 'n')
+            if (userPlayAgain === 'n')
                 playAgain = false;
         }
-        else 
+        else
             playAgain = false;
     }
 
     console.log('Game has ended. Score:');
-    console.log('Computer: '+ score[0]);
-    console.log('Player: '+ score[1]);
+    console.log('Computer: ' + score[0]);
+    console.log('Player: ' + score[1]);
     console.log("Winner is:")
     console.log(getWinner(score[0], score[1]));
 
@@ -113,4 +157,4 @@ function playGame(){
 /*
 Start the game
 */
-playGame();
+//playGame();

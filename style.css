@@ -1,0 +1,83 @@
+.fullsize {
+    display: flex;
+    flex: 1;
+    height: 100vh;
+    margin: 0 auto;
+    background-color: #0b405a;
+    color: white;
+    font-size: 50px;
+}
+
+.alert {
+    position: absolute;
+    display: flex;
+
+    justify-content: center;
+    width: 100%;
+    padding: 20px;
+
+    color: white;
+    text-align: center;
+
+    opacity: 0;
+    background-color: #f44336;
+
+}
+
+
+.you,
+.pc {
+
+    flex: 1;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 80px;
+}
+
+.you .weapons {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    height: fit-content;
+}
+
+.weapon {
+    width: 200px;
+    height: 200px;
+    text-align: center;
+
+}
+
+button {
+    padding: 20px;
+    border: none;
+    border-radius: 50%;
+    width: 100%;
+    height: 100%;
+    color: inherit;
+    font-size: 25px;
+}
+
+#Rock {
+    background-color: #e1bebe;
+}
+
+#Paper {
+    background-color: #d05228;
+}
+
+#Scissors {
+    background-color: #dfa927;
+}
+
+.pc>.weapon {
+    width: 200px;
+    border-radius: 50%;
+    height: 200px;
+    text-align: center;
+    background-color: aqua;
+
+}
